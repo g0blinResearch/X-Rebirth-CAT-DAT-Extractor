@@ -13,13 +13,13 @@ for catfile in list_of_files:
 		obj_data["path"] = os.path.dirname(obj_data["filepath"])
 		obj_data["filename"] = obj_data["filepath"].split("/")[-1]
 
-		if not os.path.isdir("%s/%s/%s"%(outdir,catfile,obj_data["path"])):
-			os.makedirs("%s/%s/%s"%(outdir,catfile,obj_data["path"]))
+		if not os.path.isdir("%s/%s"%(outdir,obj_data["path"])):
+			os.makedirs("%s/%s"%(outdir,obj_data["path"]))
 
 		try:
-			outf = open("%s/%s/%s/%s"%(outdir,catfile,obj_data["path"],obj_data["filename"]),"wb")
+			outf = open("%s/%s/%s"%(outdir,obj_data["path"],obj_data["filename"]),"wb")
 			outf.write(inf_data.read(int(obj_data["size"])))
 			outf.close()
 		except IOError:
-			print "[IOERROR] %s/%s/%s/%s"%(outdir,catfile,obj_data["path"],obj_data["filename"])
+			print "[IOERROR] %s/%s/%s"%(outdir,obj_data["path"],obj_data["filename"])
 	inf.close()
