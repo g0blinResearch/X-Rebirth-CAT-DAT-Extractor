@@ -1,7 +1,6 @@
 import os,sys
 outdir = "out"
 list_of_files = [file for file in os.listdir(".") if file.lower().endswith(".cat")]
-list_of_files=["05.cat"]
 for catfile in list_of_files:
 	inf = open(catfile,"rb")
 	inf_data_name = "%s.dat"%catfile.split(".")[0]
