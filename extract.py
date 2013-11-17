@@ -1,9 +1,10 @@
 import os
+
 outdir = "out"
 list_of_files = [file for file in os.listdir(
     ".") if file.lower().endswith(".cat")]
 for catfile in list_of_files:
-    inf = open(catfile, "rb")
+    inf = open(catfile, "r")
     inf_data_name = "%s.dat" % catfile.split(".")[0]
     inf_data = open(inf_data_name, "rb")
 
@@ -26,6 +27,6 @@ for catfile in list_of_files:
             outf.write(inf_data.read(int(obj_data["size"])))
             outf.close()
         except IOError:
-            print("[IOERROR] %s/%s/%s" %
-                 (outdir, obj_data["path"], obj_data["filename"]))
+            print(("[IOERROR] %s/%s/%s" %
+                 (outdir, obj_data["path"], obj_data["filename"])))
     inf.close()
