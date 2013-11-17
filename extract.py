@@ -1,6 +1,7 @@
 import os,sys
 outdir = "out"
 list_of_files = [file for file in os.listdir(".") if file.lower().endswith(".cat")]
+list_of_files=["05.cat"]
 for catfile in list_of_files:
 	inf = open(catfile,"rb")
 	inf_data_name = "%s.dat"%catfile.split(".")[0]
@@ -9,9 +10,10 @@ for catfile in list_of_files:
 	for line in inf:
 		obj_data_split = line.split(" ")
 
-		obj_data = {"hash":obj_data_split[-1],"modified_epoch":obj_data_split[-2],"size":obj_data_split[-3],"filepath":os.path.join(obj_data_split[0:len(obj_data_split)-3])[0]}
+		obj_data = {"hash":obj_data_split[-1],"modified_epoch":obj_data_split[-2],"size":obj_data_split[-3],"filepath":" ".join(obj_data_split[0:len(obj_data_split)-3])}
 		obj_data["path"] = os.path.dirname(obj_data["filepath"])
 		obj_data["filename"] = obj_data["filepath"].split("/")[-1]
+		print obj_data
 
 		if not os.path.isdir("%s/%s/%s"%(outdir,catfile,obj_data["path"])):
 			os.makedirs("%s/%s/%s"%(outdir,catfile,obj_data["path"]))
